@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8x8 Satranç Tahtası</title>
+    <style>
+        .chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 2px;
+        }
+        .square {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .square:nth-child(odd) {
+            background-color: #eee;
+        }
+        .square:nth-child(even) {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="chessboard" id="chessboard"></div>
+
+    <script>
+        // Satranç tahtasını oluştur
+        const chessboard = document.getElementById('chessboard');
+
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                const square = document.createElement('div');
+                square.classList.add('square');
+                square.dataset.row = i + 1;
+                square.dataset.col = j + 1;
+
+                // Her bir kareye tıklandığında açıklama ekle
+                square.addEventListener('click', () => {
+                    const explanation = document.createElement('div');
+                    explanation.textContent = `satır ${i + 1}, sütun ${j + 1}`;
+                    square.appendChild(explanation);
+
+                    // Açıklamayı 2 saniye sonra kaldır
+                    setTimeout(() => {
+                        square.removeChild(explanation);
+                    }, 2000);
+                });
+
+                chessboard.appendChild(square);
+            }
+        }
+    </script>
+</body>
+</html>
