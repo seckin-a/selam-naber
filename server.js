@@ -7,6 +7,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(1453, function () {
+app.listen(3001, function () {
   console.log('Sunucu çalışıyor...');
 });
